@@ -18,12 +18,12 @@ Route::get('/home', function () {
 })->name('home');
 
 Route::group(['middleware' => ['guest']], function () {
-   Route::get('', [\App\Http\Controllers\AuthController::class, 'viewLogin'])->name('show.login');
+   Route::get('', [\App\Http\Controllers\AuthController::class, 'viewLogin'])->name('login');
    Route::get('register', [\App\Http\Controllers\AuthController::class, 'viewRegister'])->name('show.register');
    Route::post('register', [\App\Http\Controllers\AuthController::class, 'register'])->name('register');
    Route::get('active-account/{user}/{token}', [\App\Http\Controllers\SendMailController::class, 'activeAccount'])
        ->name('active.account');
-   Route::post('login', [\App\Http\Controllers\AuthController::class, 'login'])->name('login');
+   Route::post('login', [\App\Http\Controllers\AuthController::class, 'login'])->name('login.store');
 });
 
 Route::get('email', [\App\Http\Controllers\SendMailController::class, 'showEmail'])->name('show.email');
@@ -33,3 +33,7 @@ Route::get('identify/{user}/{token}', [\App\Http\Controllers\AuthController::cla
 Route::put('update-password/{user}', [\App\Http\Controllers\AuthController::class, 'updatePassword'])
     ->name('update.password');
 Route::get('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+
+Route::group(['middleware' => ['web', 'auth']], function () {
+    Route::resource('user', App\Http\Controllers\UserController::class);
+});

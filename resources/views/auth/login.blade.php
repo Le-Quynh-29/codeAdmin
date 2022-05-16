@@ -6,20 +6,7 @@
             <h2 class="title1">Đăng nhập</h2>
             <div class="widget-shadow">
                 <div class="sign-up-row widget-shadow">
-                    @if(session()->has('success'))
-                        <div class="panel panel-success">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">{{ session()->get('success') }}</h3>
-                            </div>
-                        </div>
-                    @elseif(session()->has('info'))
-                        <div class="panel panel-info">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">{{ session()->get('info') }}</h3>
-                            </div>
-                        </div>
-                    @endif
-                    <form action="{{ route('login') }}" method="post">
+                    <form action="{{ route('login.store') }}" method="post">
                         @csrf
                         <div class="sign-u">
                             <input type="text" name="email" placeholder="Địa chỉ email" value="{{ old('email') }}"

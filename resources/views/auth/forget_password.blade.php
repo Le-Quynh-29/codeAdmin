@@ -20,7 +20,7 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="registration">
-                            <a class="" href="{{ route('show.login') }}">
+                            <a class="" href="{{ route('login') }}">
                                 Quay lại trang đăng nhập
                             </a>
                         </div>

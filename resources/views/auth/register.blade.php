@@ -56,7 +56,7 @@
                     </div>
                     <div class="registration">
                         Đã đăng ký.
-                        <a class="" href="{{ route('show.login') }}">
+                        <a class="" href="{{ route('login') }}">
                             Đăng nhập
                         </a>
                     </div>

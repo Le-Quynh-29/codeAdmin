@@ -26,10 +26,10 @@ class SendMailController extends Controller
             ]);
         } else {
             toastr()->info('Tài khoản đã được xác minh trước đó.');
-            return redirect()->route('show.login');
+            return redirect()->route('login');
         }
         toastr()->success('Xác minh thành công. Đăng nhập để sử dụng.');
-        return redirect()->route('show.login');
+        return view('auth.active_access');
     }
 
     /**
@@ -63,6 +63,6 @@ class SendMailController extends Controller
             $email->to($user->email, $user->name);
         });
         toastr()->info('Kiểm tra email để thay đổi mật khẩu.');
-        return redirect()->route('show.login');
+        return redirect()->route('login');
     }
 }

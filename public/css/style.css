@@ -6043,9 +6043,9 @@ i.text-info{
 i.icon_13{
   color:#a88add;
 }
-.text-info {
-    color: #b8c9f1;
-}
+/*.text-info {*/
+/*    color: #b8c9f1;*/
+/*}*/
 .activity-img{
   text-align:center;
 }
@@ -6348,9 +6348,9 @@ h4.asd label {
 	border-bottom:0;
 	padding-bottom:4px;
 }
-.text-success {
-  color:#00ACED;
-}
+/*.text-success {*/
+/*  color:#00ACED;*/
+/*}*/
 .text-danger {
   color: #f25656;
 }

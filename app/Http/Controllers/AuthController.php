@@ -51,7 +51,7 @@ class AuthController extends Controller
         }
         toastr()->success('Đăng ký thành công');
         toastr()->info('Vui lòng kiểm tra địa chỉ email để xác minh tài khoản.');
-        return redirect()->route('show.login');
+        return redirect()->route('login');
     }
 
     /**
@@ -61,7 +61,6 @@ class AuthController extends Controller
      */
     public function viewLogin()
     {
-//        dd((strtotime(Carbon::now()) - strtotime(User::where('id', 1)->value('updated_at'))) / 60 );
         return view('auth.login');
     }
 
@@ -88,7 +87,7 @@ class AuthController extends Controller
             return redirect()->route('home');
         } else {
             toastr()->error('Thông tin đăng nhập không chính xác hoặc tài khoản đã bị vô hiệu hóa.');
-            return redirect()->route('show.login');
+            return redirect()->route('login');
         }
     }
 
@@ -103,7 +102,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         toastr()->success('Đăng xuất thành công.');
-        return redirect()->route('show.login');
+        return redirect()->route('login');
     }
 
     /**
@@ -120,7 +119,7 @@ class AuthController extends Controller
         ]);
 
         toastr()->success('Đổi mật khẩu thành công. Đăng nhập để sử dụng hệ thống.');
-        return redirect()->route('show.login');
+        return redirect()->route('login');
     }
 
     /**
