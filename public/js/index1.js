@@ -1,3 +1,8 @@
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!********************************!*\
+  !*** ./resources/js/index1.js ***!
+  \********************************/
 var chart = AmCharts.makeChart("chartdiv", {
   "type": "serial",
   "theme": "light",
@@ -8,7 +13,7 @@ var chart = AmCharts.makeChart("chartdiv", {
     "title": "Sales",
     "position": "left",
     "autoGridCount": false,
-    "labelFunction": function(value) {
+    "labelFunction": function labelFunction(value) {
       return "$" + Math.round(value) + "M";
     }
   }, {
@@ -113,7 +118,7 @@ var chart = AmCharts.makeChart("chartdiv", {
     "shadowAlpha": 0
   },
   "export": {
-   "enabled": true
+    "enabled": true
   },
   "dataProvider": [{
     "date": "2013-01-16",
@@ -207,3 +212,5 @@ var chart = AmCharts.makeChart("chartdiv", {
     "sales2": 7
   }]
 });
+/******/ })()
+;

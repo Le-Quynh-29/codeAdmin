@@ -9,7 +9,8 @@
 
             <div class="row">
                 <div class="form-three p-0 m-0">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="{{ route('user.store') }}" method="post">
+                        @csrf
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Họ tên</label>
                             <div class="col-sm-8">
@@ -106,7 +107,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="password" class="col-sm-2 control-label">Mật khẩu</label>
                             <div class="col-sm-3">

@@ -49,7 +49,7 @@ class UserController extends Controller
     {
         $this->authorize('create', User::class);
         $data = $request->all();
-        $this->userRepo->create($data);
+        $this->userRepo->createUser($data);
         toastr()->success('Thêm mới người dùng thành công.');
         return redirect()->route('user.index');
     }

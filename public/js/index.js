@@ -1,3 +1,8 @@
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!*******************************!*\
+  !*** ./resources/js/index.js ***!
+  \*******************************/
 var chart = AmCharts.makeChart("chartdiv", {
   "type": "serial",
   "theme": "light",
@@ -85,10 +90,10 @@ var chart = AmCharts.makeChart("chartdiv", {
     "title": "Male",
     "labelText": "[[value]]",
     "clustered": false,
-    "labelFunction": function(item) {
+    "labelFunction": function labelFunction(item) {
       return Math.abs(item.values.value);
     },
-    "balloonFunction": function(item) {
+    "balloonFunction": function balloonFunction(item) {
       return item.category + ": " + Math.abs(item.values.value) + "%";
     }
   }, {
@@ -99,10 +104,10 @@ var chart = AmCharts.makeChart("chartdiv", {
     "title": "Female",
     "labelText": "[[value]]",
     "clustered": false,
-    "labelFunction": function(item) {
+    "labelFunction": function labelFunction(item) {
       return Math.abs(item.values.value);
     },
-    "balloonFunction": function(item) {
+    "balloonFunction": function balloonFunction(item) {
       return item.category + ": " + Math.abs(item.values.value) + "%";
     }
   }],
@@ -115,7 +120,7 @@ var chart = AmCharts.makeChart("chartdiv", {
   "valueAxes": [{
     "gridAlpha": 0,
     "ignoreAxisWidth": true,
-    "labelFunction": function(value) {
+    "labelFunction": function labelFunction(value) {
       return Math.abs(value) + '%';
     },
     "guides": [{
@@ -144,8 +149,9 @@ var chart = AmCharts.makeChart("chartdiv", {
     "bold": true,
     "align": "middle"
   }],
- "export": {
+  "export": {
     "enabled": true
   }
-
 });
+/******/ })()
+;

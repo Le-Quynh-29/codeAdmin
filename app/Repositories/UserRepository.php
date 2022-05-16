@@ -24,8 +24,9 @@ class UserRepository extends AbstractRepository
      *@param array $data
      *@return mixed
      */
-    public function create(array $data)
+    public function createUser(array $data)
     {
+        dd($data);
         $username = !is_null($data['username']) ? $data['username'] : Str::random(15);
         $birthday = !is_null($data['birthday']) ? Carbon::createFromFormat('d/m/Y', $data['birthday'])->format('Y-m-d') : null;
         $user = User::create([
