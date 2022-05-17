@@ -26,18 +26,18 @@
 	width: 33px;
 	height: 54px;
 }
-/*.owl-next{*/
-/*	background: url(../images/divice-pagenations.png) no-repeat -35px 0px;*/
-/*	position: absolute;*/
-/*	right: -8%;*/
-/*	top: 30%;*/
-/*}*/
-/*.owl-prev{*/
-/*	background: url(../images/divice-pagenations.png) no-repeat 0px 0px;*/
-/*	position: absolute;*/
-/*	left: -16.5%;*/
-/*	top: 30%;*/
-/*}*/
+.owl-next{
+	background: url(../images/divice-pagenations.png) no-repeat -35px 0px;
+	position: absolute;
+	right: -8%;
+	top: 30%;
+}
+.owl-prev{
+	background: url(../images/divice-pagenations.png) no-repeat 0px 0px;
+	position: absolute;
+	left: -16.5%;
+	top: 30%;
+}
 /* Clickable class fix problem with hover on touch devices */
 /* Use it for non-touch hover action */
 .owl-theme .owl-controls.clickable .owl-buttons div:hover{
@@ -86,10 +86,10 @@
 }
 
 /* preloading images */
-/*.owl-item.loading{*/
-/*	min-height: 150px;*/
-/*	background: url(AjaxLoader.gif) no-repeat center center*/
-/*}*/
+.owl-item.loading{
+	min-height: 150px;
+	background: url(../images/AjaxLoader.gif) no-repeat center center
+}
 /*
  * 	Core Owl Carousel CSS File
  *	v1.24
@@ -146,9 +146,9 @@
 }
 
 /* mouse grab icon */
-/*.grabbing { */
-/*    cursor:url(grabbing.png) 8 8, move;*/
-/*}*/
+.grabbing {
+    cursor:url('../images/grabbing.png') 8 8, move;
+}
 
 /* fix */
 .owl-carousel  .owl-wrapper,

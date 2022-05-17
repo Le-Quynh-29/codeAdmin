@@ -32,16 +32,17 @@
                             <div class="col-sm-8">
                                 <div class="checkbox-inline1">
                                     <label>
-                                        <input type="radio" value="0" name="gender"> Nam
+                                        <input type="radio" value="0" name="gender"
+                                            {!! old('gender') == \App\Models\User::MALE ? "checked" : '' !!}> Nam
                                     </label>
                                 </div>
                                 <div class="checkbox-inline1">
                                     <label>
-                                        <input type="radio" value="1" name="gender"> Nữ
+                                        <input type="radio" value="1" name="gender"
+                                            {!! old('gender') == \App\Models\User::FEMALE ? "checked" : '' !!}> Nữ
                                     </label>
                                 </div>
                             </div>
-                            {!! $errors->first('gender', '<div class=error-feedback>:message</div>') !!}
                         </div>
                         <div class="form-group">
                             <label for="phone_number" class="col-sm-2 control-label">SĐT</label>
@@ -77,12 +78,14 @@
                                 </div>
                                 <div class="checkbox-inline1">
                                     <label>
-                                        <input type="radio" value="1" name="role"> Admin
+                                        <input type="radio" value="1" name="role"
+                                            {!! old('role') == \App\Models\User::ADMIN ? "checked" : '' !!}> Admin
                                     </label>
                                 </div>
                                 <div class="checkbox-inline1">
                                     <label>
-                                        <input type="radio" value="2" name="role"> CTV
+                                        <input type="radio" value="2" name="role"
+                                            {!! old('role') == \App\Models\User::CTV ? "checked" : '' !!}> CTV
                                     </label>
                                 </div>
                             </div>
@@ -92,17 +95,20 @@
                             <div class="col-sm-8">
                                 <div class="checkbox-inline1">
                                     <label>
-                                        <input type="radio" value="0" name="status" checked> Chưa xác minh
+                                        <input type="radio" value="0" name="status"
+                                            {!! old('status') == \App\Models\User::NO_ACTIVE ? "checked" : '' !!}> Chưa xác minh
                                     </label>
                                 </div>
                                 <div class="checkbox-inline1">
                                     <label>
-                                        <input type="radio" value="1" name="status" checked> Đã xác minh
+                                        <input type="radio" value="1" name="status"
+                                            {!! is_null(old('status')) || old('status') == \App\Models\User::ACTIVE ? 'checked' : '' !!}> Đã xác minh
                                     </label>
                                 </div>
                                 <div class="checkbox-inline1">
                                     <label>
-                                        <input type="radio" value="2" name="status"> Vô hiệu hóa
+                                        <input type="radio" value="2" name="status"
+                                            {!! old('status') == \App\Models\User::BLOCK ? "checked" : '' !!}> Vô hiệu hóa
                                     </label>
                                 </div>
                             </div>
@@ -117,7 +123,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label float-left">
-                                <a type="button" class="btn btn-warning">
+                                <a href="{{ route('user.index') }}" class="btn btn-warning">
                                     Hủy
                                 </a>
                                 <button type="submit" class="btn btn-primary ml-4">Thêm mới</button>
