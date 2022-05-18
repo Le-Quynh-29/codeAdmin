@@ -61,8 +61,13 @@ class UserRepository extends AbstractRepository
             'birthday' => $birthday,
             'role' => $data['role'],
             'status' => $data['status'],
-            'password' => Hash::make($data['password'])
         ]);
+
+        if (!is_null($data['password'])) {
+            $user = User::where('id', $id)->update([
+                'password' => Hash::make($data['password'])
+            ]);
+        }
         return $user;
     }
 

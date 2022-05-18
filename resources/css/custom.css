@@ -149,13 +149,6 @@
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-div.error-feedback {
-    color: #FF0808;
-    font-size: 14px;
-    line-height: 21px;
-    margin-bottom: 0.5rem;
-}
-
 input.error {
     border-color: #dc3545 !important;
     padding-right: calc(1.6em + 0.75rem) !important;
@@ -219,4 +212,12 @@ input.error {
 
 .ml-4 {
     margin-left: 1!important;
+}
+
+label.error, div.invalid-feedback {
+    color: #FF0808;
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 0.5rem;
+    font-weight: normal;
 }

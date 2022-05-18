@@ -9,7 +9,7 @@
 
             <div class="row">
                 <div class="form-three p-0 m-0">
-                    <form class="form-horizontal" action="{{ route('user.store') }}" method="post">
+                    <form class="form-horizontal" action="{{ route('user.store') }}" method="post" id="form-store-user">
                         @csrf
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Họ tên</label>
@@ -136,3 +136,13 @@
     </div>
 @endsection
 
+@section('javascript')
+    @parent
+    <script>
+        _validateUniqueNameURL = "{{ route('ajax.user.validate.unique.name') }}";
+        _validateUniqueEmailURL = "{{ route('ajax.user.validate.unique.email') }}";
+        _validateUniquePhoneNumberURL = "{{ route('ajax.user.validate.unique.phone.number') }}";
+    </script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('js/user-create.js') }}" charset="UTF-8"></script>
+@endsection

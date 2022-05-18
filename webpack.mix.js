@@ -28,8 +28,6 @@ mix.copy('node_modules/toastr/build/toastr.min.js', 'public/js');
 mix.copy('node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css', 'public/css');
 mix.copy('node_modules/jquery-datetimepicker/build/jquery.datetimepicker.min.css', 'public/css');
 
-//*************** BACKEND ******************
-
 //*************** OTHER ******************
 mix.copy('resources/images', 'public/images');
 mix.copy('resources/fonts', 'public/fonts');

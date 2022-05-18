@@ -1,19 +1,17 @@
 (function($) {
     "use strict";
 
-    var AppUserEdit = function AppUserEdit(element, options, cb) {
-        var appUserEdit = this;
+    var AppUserCreate = function AppUserCreate(element, options, cb) {
+        var appUserCreate = this;
         this.element = element;
         this.$element = $(element);
         this.token = _token;
         this.validateUniqueNameURL = _validateUniqueNameURL;
         this.validateUniqueEmailURL = _validateUniqueEmailURL;
         this.validateUniquePhoneNumberURL = _validateUniquePhoneNumberURL;
-        this.updateUser = _updateUser;
-        this.userId = _userId;
     };
 
-    AppUserEdit.prototype = {
+    AppUserCreate.prototype = {
         _init: function _init() {
             this.ajaxSetup();
             this.initValidateUserGeneral();
@@ -49,11 +47,11 @@
                 return this.optional(element) || moment(value, "DD/MM/YYYY", true).isValid();
             }, "Ngày sinh không đúng định dạng d/m/Y.");
 
-            $("#form-update-user").validate({
+            $("#form-store-user").validate({
                 onfocusout: function (element, event) {
                     var $element = $(element);
                     if ($element.attr("id") == "password" || $element.attr("id") == "username" || $element.attr("id") == "email"
-                    || $element.attr('id') == 'name' || $element.attr('id') == 'phone_number' || $element.attr('id') == 'birthday') {
+                        || $element.attr('id') == 'name' || $element.attr('id') == 'phone_number' || $element.attr('id') == 'birthday') {
                         $element.val($.trim($element.val()));
                         $element.valid();
 
@@ -63,8 +61,8 @@
                 onclick: false,
                 rules: {
                     name: {
-                      required: true,
-                      maxlength: 50,
+                        required: true,
+                        maxlength: 50,
                     },
                     username: {
                         maxlength: 50,
@@ -73,7 +71,7 @@
                             type: 'POST',
                             data: {
                                 id: function() {
-                                    return el.userId;
+                                    return null;
                                 },
                                 username: function() {
                                     return $('#username').val();
@@ -96,7 +94,7 @@
                             type: 'POST',
                             data: {
                                 id: function() {
-                                    return el.userId;
+                                    return null;
                                 },
                                 email: function() {
                                     return $('#email').val();
@@ -110,9 +108,6 @@
                             }
                         }
                     },
-                    gender: {
-                        required: true,
-                    },
                     phone_number: {
                         regex: /^(0|[+?]84)(3|5|7|8|9)+[0-9]{8}/,
                         remote: {
@@ -120,7 +115,7 @@
                             type: 'POST',
                             data: {
                                 id: function() {
-                                    return el.userId;
+                                    return null;
                                 },
                                 phone_number: function() {
                                     return $('#phone_number').val();
@@ -132,14 +127,13 @@
                                 let jsonStr = JSON.stringify(result.data);
                                 return jsonStr;
                             }
-                        },
-                        whitespace: true,
+                        }
                     },
                     birthday: {
-                        format_date: true,
-                        whitespace: true
+                        format_date: true
                     },
                     password : {
+                        required: true,
                         minlength: 6,
                         maxlength: 255,
                         whitespace: true
@@ -154,9 +148,6 @@
                         required: "Họ tên không được để trống.",
                         maxlength: "Họ tên chứa tối đa 50 ký tự.",
                     },
-                    gender: {
-                        required: "Giới tính không được để trống.",
-                    },
                     email: {
                         required: "Địa chỉ email không được để trống.",
                         email: "Địa chỉ email sai định dạng.",
@@ -164,18 +155,14 @@
                         remote: "Địa chỉ email đã tồn tại."
                     },
                     phone_number: {
-                        whitespace: "SĐT không được chứa dấu cách.",
-                        regex: 'SĐT không tồn tại.',
+                        regex: 'SĐT không tồn tại',
                         remote: 'SĐT đã được đăng ký trước đó',
                     },
-                    birthday: {
-                        whitespace: "Ngày sinh không được chứa dấu cách.",
-                        format_date: "Ngày sinh không đúng định dạng d/m/Y.",
-                    },
                     password : {
+                        required: "Mật khẩu không được để trống.",
                         minlength: "Mật khẩu không được ít hơn 6 ký tự.",
                         maxlength: "Mật khẩu không được nhiều hơn 255 ký tự.,",
-                        whitespace: "Mật khẩu không được chứa dấu cách."
+                        whitespace: "Mật khẩu không được chứa dấu cách"
                     }
 
                 },
@@ -183,52 +170,23 @@
                     error.insertAfter(element);
                     element.focus();
                 },
-                submitHandler: function() {
-                    var dataRes = new FormData();
-                    dataRes.append('id', el.userId);
-                    dataRes.append('username', $('#username').val());
-                    dataRes.append('name', $('#name').val());
-                    dataRes.append('gender', $('input[name=gender]:checked').val());
-                    dataRes.append('role', $('input[name=role]:checked').val());
-                    dataRes.append('email', $('#email').val());
-                    dataRes.append('status', $('input[name=status]:checked').val());
-                    dataRes.append('phone_number', $('#phone_number').val());
-                    dataRes.append('birthday', $('#birthday').val());
-                    dataRes.append('password', $('#password').val());
-                    $.ajax({
-                        url: el.updateUser,
-                        type: "POST",
-                        data: dataRes,
-                        processData: false,
-                        contentType: false,
-                        success: function (res) {
-                            if (res.status == 200) {
-                                toastr.success('Cập nhật thông tin người dùng thành công.');
-                            }
-                        },
-                        error: function (error) {
-                            if (error.responseJSON.error.message) {
-                                toastr.error(error.responseJSON.error.message);
-                            } else {
-                                toastr.error(error.responseJSON.error);
-                            }
-                        }
-                    });
+                submitHandler: function(form) {
+                    form.submit();
                 }
             });
         },
     };
     /* Execute main function */
 
-    $.fn.appUserEdit = function(options, cb) {
+    $.fn.appUserCreate = function(options, cb) {
         this.each(function() {
             var el = $(this);
 
-            if (!el.data("appUserEdit")) {
-                var appUserEdit = new AppUserEdit(el, options, cb);
-                el.data("appUserEdit", appUserEdit);
+            if (!el.data("appUserCreate")) {
+                var appUserCreate = new AppUserCreate(el, options, cb);
+                el.data("appUserCreate", AppUserCreate);
 
-                appUserEdit._init();
+                appUserCreate._init();
             }
         });
         return this;
@@ -236,5 +194,5 @@
 })(jQuery);
 
 $(document).ready(function() {
-    $("body").appUserEdit();
+    $("body").appUserCreate();
 });
