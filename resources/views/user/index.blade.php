@@ -56,18 +56,29 @@
                             class="text-danger"
                             @endif>{{ $user->formatStatus() }}
                         </td>
-                        <td>
+                        <td class="width-70">
                             <a class="float-left text-primary" href="{{ route('user.edit', $user->id) }}">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <form class="clearfix float-right" method="POST" action="{{ route('user.destroy', $user->id) }}">
-                                @csrf
-                                <input type="hidden" name="_method" value="DELETE"/>
-                                <input type="hidden" name="query" value="{{ json_encode(app('request')->all()) }}"/>
-                                <a href="javascript:;" class="modal-confirm text-danger">
-                                    <i class="fa fa-trash-o"></i>
-                                </a>
-                            </form>
+                            @if($user->status !== \App\Models\User::BLOCK)
+                                <form class="clearfix float-right" method="POST"
+                                      action="{{ route('user.destroy', $user->id) }}">
+                                    @csrf
+                                    <input type="hidden" name="_method" value="DELETE"/>
+                                    <button type="submit" class="text-danger">
+                                        <i class="fa fa-lock"></i>
+                                    </button>
+                                </form>
+                            @else
+                                <form class="clearfix float-right" method="POST"
+                                      action="{{ route('user.destroy', $user->id) }}">
+                                    @csrf
+                                    <input type="hidden" name="_method" value="DELETE"/>
+                                    <button type="submit" class="text-success">
+                                        <i class="fa fa-unlock"></i>
+                                    </button>
+                                </form>
+                            @endif
                         </td>
                     </tr>
                 @empty

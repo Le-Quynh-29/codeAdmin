@@ -164,8 +164,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <div class="profile_img">
                             <div class="user-name">
-                                <p>Admin Name</p>
-                                <span>Administrator</span>
+                                <p>{{ \Illuminate\Support\Facades\Auth::user()->username }}</p>
+                                <span>{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
                             </div>
                             <i class="fa fa-angle-down lnr"></i>
                             <i class="fa fa-angle-up lnr"></i>

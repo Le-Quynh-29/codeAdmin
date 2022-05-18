@@ -221,3 +221,14 @@ label.error, div.invalid-feedback {
     margin-bottom: 0.5rem;
     font-weight: normal;
 }
+
+button.text-danger, button.text-success {
+    border-width: 0;
+    background-color: #ffffff;
+    border-color: #ffffff;
+    padding: 0 6px;
+}
+
+.width-70 {
+    width: 70px!important;
+}

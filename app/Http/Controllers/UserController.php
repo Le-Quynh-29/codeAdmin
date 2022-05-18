@@ -79,6 +79,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->userRepo->find($id);
+        if (is_null($user)) {
+            abort(404);
+        }
         $this->authorize('update', $user);
         return view('user.edit', compact('user'));
     }
@@ -101,8 +104,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $user = $this->userRepo->find($id);
+        if (is_null($user)) {
+            abort(404);
+        }
+        $this->authorize('delete', $user);
+        $this->userRepo->blockUser($id);
+
+        return $this->redirectAfterDelete($this->userRepo, $request, 'user.index');
     }
 }

@@ -136,4 +136,30 @@ class UserRepository extends AbstractRepository
         }
         return false;
     }
+
+    /**
+     * block user
+     *
+     * @param mixed $id
+     * @return void
+     */
+    public function blockUser($id)
+    {
+        $user = User::where('id', $id)->first();
+
+        if (!is_null($user)) {
+            if ($user->status !== User::BLOCK) {
+                User::where('id', $id)->update([
+                    'status' => User::BLOCK
+                ]);
+                toastr()->success('Vô hiệu hóa tài khoản '.$user->username.' thành công.');
+            } else {
+                User::where('id', $id)->update([
+                    'status' => User::ACTIVE
+                ]);
+                toastr()->success('Tài khoản '.$user->username.' đã được xác thực thành công.');
+            }
+        }
+
+    }
 }
